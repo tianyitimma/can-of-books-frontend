@@ -12,6 +12,8 @@ import LoginButton from './LoginButton.js';
 import Profile from './Profile.js';
 import BestBooks from './BestBooks.js';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Content from './Content';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,17 +25,17 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3001/books')
+    axios.get('https://can-of-books-back.herokuapp.com/books')
       .then(user => {
         this.setState({
-          email: user.email,
-          books: user.books
+          email: user.data[0].email,
+          books: user.data[0].books
         })
       })
   }
 
   render() {
-    console.log('app', this.props);
+    console.log('books', this.state.books);
     return(
       <>
         <Router>
@@ -42,14 +44,17 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
               <LoginButton />
-                {this.props.auth0.isAuthenticated && this.state.books.length &&
-                  <BestBooks books={this.state.books} />
-                }
+              {this.props.auth0.isAuthenticated && this.state.books.length &&
+                <BestBooks books={this.state.books} />
+              }
               </Route>
               <Route exact path="/profile">
-                {
-                    <Profile />
-                }
+              {this.props.auth0.isAuthenticated &&
+                <>
+                  <Profile />
+                  <Content />
+                </>
+              }
               </Route>
             </Switch>
             <Footer />

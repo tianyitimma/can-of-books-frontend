@@ -7,7 +7,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="tianyi.us.auth0.com"
     clientId="gBwzZTry5NBVx44tlOrSm0SGQjQXCeje"
-    redirectUri="https://can-of-books-back.herokuapp.com/"
+    redirectUri="https://can-of-book-front.netlify.app/"
   >
     <App />
   </Auth0Provider>,
