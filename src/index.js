@@ -7,7 +7,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="tianyi.us.auth0.com"
     clientId="gBwzZTry5NBVx44tlOrSm0SGQjQXCeje"
-    redirectUri="https://can-of-books-back.herokuapp.com/"
+    redirectUri="http://localhost:3000"
   >
     <App />
   </Auth0Provider>,

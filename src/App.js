@@ -26,8 +26,8 @@ class App extends React.Component {
     axios.get('http://localhost:3001/books')
       .then(user => {
         this.setState({
-          email: user.email,
-          books: user.books
+          email: user.data.email,
+          books: user.data.books
         })
       })
   }
@@ -47,7 +47,7 @@ class App extends React.Component {
                 }
               </Route>
               <Route exact path="/profile">
-                {
+                {this.props.auth0.isAuthenticated &&
                     <Profile />
                 }
               </Route>
